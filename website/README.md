@@ -3,4 +3,4 @@
     sudo apt-get install nodejs
     sudo apt-get install npm
     npm install
-    node start
+    node app.js
