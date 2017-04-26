@@ -1,0 +1,23 @@
+{
+  "name": "fake-malware-site",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "dependencies": {
+    "express": "^4.15.2"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mgande/fake-malware-site.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/mgande/fake-malware-site/issues"
+  },
+  "homepage": "https://github.com/mgande/fake-malware-site#readme"
+}
