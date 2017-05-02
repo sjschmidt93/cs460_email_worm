@@ -1,0 +1,1 @@
+window.history.pushState("string", "Title", "/get.adobe.com/flashplayer/?no_redirect");
