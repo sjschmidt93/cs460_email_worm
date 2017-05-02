@@ -1,11 +1,11 @@
-##email virus
-##This is for CS460 UIUC
+email virus
+This is for CS460 UIUC
 
 
-#Pyinstaller
+Pyinstaller
 
 pip install pyinstaller
 
-#crontab
+crontab
 	
 pip install python-crontab
