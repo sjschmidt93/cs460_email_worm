@@ -1,4 +1,0 @@
-Pyinstaller
-	pip install pyinstaller
-crontab
-	pip install python-crontab
