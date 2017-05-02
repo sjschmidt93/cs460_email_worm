@@ -28,9 +28,9 @@ privkey = RSA.importKey(privkeyfp.read(),passphrase='cs460')
 
 fp_numbers = open('phonenumbers.txt', 'r')
 fp_emails = open('emails.txt','r')
-numbers_plain = "PHONE_NUMBER_HEADER\n" +fp_numbers.read()
+numbers_plain = "PHONE_NUMBER_HEADER\n" + fp_numbers.read()
 emails_plain = "EMAILS_HEADER\n" + fp_emails.read()
-numbers_cipher = pubkey.encrypt(numbers_plain, 0)
+#numbers_cipher = pubkey.encrypt(numbers_plain, 0)
 emails_cipher = pubkey.encrypt(emails_plain, 0)
 fp_numbers.seek(0)
 fp_emails.seek(0)
@@ -103,17 +103,3 @@ s.quit()
 # data = s.recv(BUFFER_SIZE)
 # s.close()
 # print "received data:", data
-
-
-
-
-
-
-
-
-
-
-
-
-
-
