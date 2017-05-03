@@ -9,3 +9,4 @@ pip install pyinstaller
 crontab
 	
 pip install python-crontab
+pip install Flask
