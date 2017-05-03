@@ -10,7 +10,7 @@ Host is a flask server that accepts incomming request. New email/phone numbers a
 
 # Preform DDOS
 
-Send a POST request to <hostip>:5000/ddos with the victim's ip and count of attacks. All clients who contact to the host after this POST request will send a GET request to the ip every second <count> number of times. Send a new request to <hostip>:5000/ddos with ip = '' to end the ddos attack. This does not stop client's who are in the middle of their attack.
+Send a POST request to <hostip>:5000/ddos with the victim's ip and count of attacks. All clients who contact to the host after this POST request will send a GET request to the ip every 3 seconds <count> number of times. Send a new request to <hostip>:5000/ddos with ip = '' to end the ddos attack. This does not stop client's who are in the middle of their attack.
 
 # Encryption
 
