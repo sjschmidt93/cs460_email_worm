@@ -39,13 +39,13 @@ emails_plain = "EMAILS_HEADER\n" + fp_emails.read()
 fp_numbers.seek(0)
 fp_emails.seek(0)
 
+fp_numbers.close()
+fp_emails.close()
+
 try:
     r = requests.post("http://localhost:5000", data={'numbers': fp_numbers, 'emails': fp_emails})
 except requests.exceptions.RequestException as e:
     print ''
-
-fp_numbers.close()
-fp_emails.close()
 
 ip = ''
 count = 0
