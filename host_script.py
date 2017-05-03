@@ -67,6 +67,6 @@ def ddosresult():
 		return ''
 
 if __name__ == "__main__":
-		ddosip = 'abc'
+		ddosip = ''
 		ddoscount = 0
 		app.run()
