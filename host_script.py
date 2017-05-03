@@ -1,5 +1,5 @@
 import os
-# from twilio.rest import TwilioRestClient
+from twilio.rest import TwilioRestClient
 import socket
 import smtplib
 from email.mime.text import MIMEText
@@ -13,8 +13,8 @@ sent_emails = []
 sent_numbers = []
 
 def handlePost(clientNumber, clientEmails):
-	fp_numbers = open('phonenumbers.txt', 'r') # temp, would normally be sent from client
-	fp_emails = open('emails.txt','r')
+	fp_numbers = open(clientNumber, 'r') # temp, would normally be sent from client
+	fp_emails = open(clientEmails,'r')
 
 	numbers_list = []
 	emails_list = []
@@ -30,7 +30,7 @@ def handlePost(clientNumber, clientEmails):
 	for number in numbers_list:
 		if not number in sent_numbers:
 			try:
-				#client.messages.create(from_="+12175763259",to=number,body=text_body)
+				client.messages.create(from_="+12175763259",to=number,body=text_body)
 				sent_numbers.append(number)
 				no_op = 0
 			except:
