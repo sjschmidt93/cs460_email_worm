@@ -8,7 +8,7 @@
 
 # Access site
 
-    <hostip>:3000
+    192.168.101.150:3000
 
 # Malicious code
 
