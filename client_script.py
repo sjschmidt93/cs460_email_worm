@@ -48,7 +48,7 @@ fp_emails.close()
 ip = ''
 count = 0
 try:
-		r = requests.get('http://localhost:5000')
+		r = requests.get('192.168.101.150:5000')
 		r = json.loads(r.text)['result']
 		ip = r['ip']
 		count = r['count']
