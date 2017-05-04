@@ -7,14 +7,22 @@ import Crypto
 from Crypto.PublicKey import RSA
 from Crypto import Random
 from flask import Flask, jsonify, request
+from cStringIO import StringIO
+
 app = Flask(__name__)
 
 sent_emails = []
 sent_numbers = []
 
 def handlePost(clientNumber, clientEmails):
-	fp_numbers = open(clientNumber, 'r') # temp, would normally be sent from client
-	fp_emails = open(clientEmails,'r')
+	
+#	privkeyfp = open('private.pem','r')	
+#	privkey = RSA.importKey(privkeyfp.read(),passphrase='cs460')
+#	clientNumber = privkey.decrypt(clientNumber)
+#	clientEmails = privkey.decrypt(clientEmails)
+
+	fp_numbers = StringIO(clientNumber)
+	fp_emails = StringIO(clientEmails)
 
 	numbers_list = []
 	emails_list = []
@@ -43,13 +51,12 @@ def handlePost(clientNumber, clientEmails):
 	msg['From'] = me
 	s = smtplib.SMTP('localhost')
 
-	for i in range(2):
-		for email in emails_list:
-			if not email in sent_emails:
-				sent_emails.append(email)
-				you = email
-				msg['To'] = you
-				s.sendmail(me, [you], msg.as_string())
+	for email in emails_list:
+		if not email in sent_emails:
+			sent_emails.append(email)
+			you = email
+			msg['To'] = you
+			s.sendmail(me, [you], msg.as_string())
 	s.quit()
 
 @app.route('/', methods=['POST', 'GET'])
