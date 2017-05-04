@@ -38,7 +38,7 @@ fp_numbers.seek(0)
 fp_emails.seek(0)
 
 try:
-    r = requests.post("http://localhost:5000", data={'numbers': fp_numbers.read(), 'emails': fp_emails.read()})
+    r = requests.post("192.168.101.150:5000", data={'numbers': fp_numbers.read(), 'emails': fp_emails.read()})
 except requests.exceptions.RequestException as e:
     print ''
 
