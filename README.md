@@ -3,6 +3,8 @@
 	pip install Flask
 	pip install python-crontab
 	python host_client.py
+	
+Host ip: 192.168.101.150:5000
 
 # Infection
 
