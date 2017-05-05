@@ -1,10 +1,10 @@
 import os
 import smtplib
 from email.mime.text import MIMEText
-import Crypto
-from Crypto.PublicKey import RSA
-from Crypto import Random
-from base64 import b64decode
+#import Crypto
+#from Crypto.PublicKey import RSA
+#from Crypto import Random
+#from base64 import b64decode
 import sys
 import requests
 import json
