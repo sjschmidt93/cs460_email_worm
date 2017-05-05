@@ -3,7 +3,7 @@
 	pip install Flask
 	pip install python-crontab
 	pip install twilio==6.1.0
-	python host_client.py
+	python client_script.py
 	
 	Note: it may be necessary to 'sudo apt install libssl-dev' if errors are thrown when trying to install twilio.
 	
