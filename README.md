@@ -2,7 +2,10 @@
 
 	pip install Flask
 	pip install python-crontab
+	pip install twilio==6.1.0
 	python host_client.py
+	
+	Note: it may be necessary to 'sudo apt install libssl-dev' if errors are thrown when trying to install twilio.
 	
 Host ip: 192.168.101.150:5000  --> This is the IP used when testing on the Virtual Network
 
@@ -16,6 +19,4 @@ Send a POST request to <hostip>:5000/ddos with the victim's ip and count of atta
 
 # Communication and Detailed Description
 
-Twilio is used to send text messages to victims. SMTP is used to send emails. 
-
-The Host sends out emails to people that look like updates for adobe flash. When the user clicks on the link in the email it redirects to a website that looks like an offical Adobe Flash website. If the user clicks the install button it then downloads a complied python file so the user can not see the code. When the user runs the python file a setup install GUI runs that looks very legit. During the loading bar part a secret python file is made in documents that gets run every hour. This file checks the users computer for contact information such as email/phone numbers and sents that information back to the host. Note: with this script on the users computer more dangerous stuff can be done.
+The client script uses grep to find emails and phone numbers on the client's computer. This could be extended to find other more malicious things like credit card numbers and social security numbers. Then the client will send lists of the email addresses and phone numbers that it found to the host. The text messages are sent with the Twilio API and the emails with SMTP. The host will send out emails and text messages using this information with a link to a website that look like a update for Adobe Flash. If the user clicks the install button a compiled python script is downloaded so the user can not actually see the code. When the user runs the python file a setup install GUI runs that looks legitimate. While the loading bar is in progress a secret python file is made in documents that gets run every hour, this is the client script. Note: far more malicious behavior could be added to this script.
